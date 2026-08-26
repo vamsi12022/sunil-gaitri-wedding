@@ -1702,38 +1702,76 @@
       bottom: 1.5rem;
       right: 1.5rem;
       z-index: 50;
-      background: rgba(212, 160, 23, 0.15);
-      border: 1px solid rgba(212, 160, 23, 0.5);
-      color: var(--gold-light);
+      background: rgba(30, 8, 8, 0.75);
+      border: 1px solid rgba(212, 160, 23, 0.6);
+      color: var(--gold-bright);
       border-radius: 50px;
       padding: 0.55rem 1.2rem;
       cursor: pointer;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 0.9rem;
-      backdrop-filter: blur(8px);
+      font-size: 0.95rem;
+      font-weight: 600;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 230, 128, 0.2);
       display: none;
       align-items: center;
       gap: 0.5rem;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
     }
 
     #music-btn:hover {
-      background: rgba(212, 160, 23, 0.3);
+      background: rgba(74, 14, 14, 0.9);
+      border-color: var(--gold-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(212, 160, 23, 0.35);
     }
 
     #music-btn.visible {
       display: flex;
     }
 
-    /* Hidden YouTube iframe */
-    #yt-player {
+    /* Floating Back to Cover button */
+    #back-btn {
       position: fixed;
-      width: 1px;
-      height: 1px;
-      opacity: 0;
-      pointer-events: none;
-      top: -10px;
-      left: -10px;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 50;
+      background: rgba(30, 8, 8, 0.75);
+      border: 1px solid rgba(212, 160, 23, 0.6);
+      color: var(--gold-bright);
+      border-radius: 50px;
+      padding: 0.55rem 1.2rem;
+      cursor: pointer;
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 230, 128, 0.2);
+      display: none;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.3s ease;
+    }
+
+    #back-btn:hover {
+      background: rgba(74, 14, 14, 0.9);
+      border-color: var(--gold-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(212, 160, 23, 0.35);
+    }
+
+    #back-btn.visible {
+      display: flex;
+    }
+
+    @media (max-width: 480px) {
+      #back-btn, #music-btn {
+        bottom: 1rem;
+        padding: 0.45rem 0.9rem;
+        font-size: 0.7rem;
+      }
+      #back-btn { left: 0.8rem; }
+      #music-btn { right: 0.8rem; }
     }
   </style>
 </head>
@@ -1796,6 +1834,11 @@
   <!-- Music toggle button (visible after opening) -->
   <button id="music-btn" onclick="toggleMusic()">
     <span id="music-icon">🔊</span> <span id="music-label">Music On</span>
+  </button>
+
+  <!-- Back to Front Cover button (visible after opening) -->
+  <button id="back-btn" onclick="closeInvitation()">
+    <span>🌸</span> <span>Front Cover</span>
   </button>
 
   <div id="page-bg"></div>
@@ -2166,10 +2209,42 @@
       setTimeout(() => {
         document.getElementById('cover-page').style.display = 'none';
         document.getElementById('cover-center').style.display = 'none';
+        
+        // Show floating back to cover button
+        const backBtn = document.getElementById('back-btn');
+        if (backBtn) backBtn.classList.add('visible');
+
         // Start petals once invitation is revealed
         startPetals();
         startSparks();
-      }, 1500);
+      }, 1400);
+    }
+
+    function closeInvitation() {
+      const coverPage = document.getElementById('cover-page');
+      const coverCenter = document.getElementById('cover-center');
+      const backBtn = document.getElementById('back-btn');
+
+      if (coverPage && coverCenter) {
+        // Hide back button
+        if (backBtn) backBtn.classList.remove('visible');
+
+        // Smooth scroll to top instantly
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Show cover elements
+        coverPage.style.display = 'flex';
+        coverCenter.style.display = 'block';
+
+        // Animate doors back together
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            document.getElementById('cover-left').classList.remove('open-left');
+            document.getElementById('cover-right').classList.remove('open-right');
+            coverCenter.classList.remove('hide-center');
+          }, 80);
+        });
+      }
     }
 
     function toggleMusic() {

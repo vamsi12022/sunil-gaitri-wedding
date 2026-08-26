@@ -2224,11 +2224,25 @@
       const coverPage = document.getElementById('cover-page');
       const coverCenter = document.getElementById('cover-center');
       const backBtn = document.getElementById('back-btn');
+      const musicBtn = document.getElementById('music-btn');
+      const audio = document.getElementById('weddingAudio');
+      const icon = document.getElementById('music-icon');
+      const label = document.getElementById('music-label');
+
+      // 1. Stop & reset music
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+        musicOn = false;
+        if (icon) icon.textContent = '🔊';
+        if (label) label.textContent = 'Music On';
+      }
+
+      // 2. Hide floating buttons on front cover
+      if (backBtn) backBtn.classList.remove('visible');
+      if (musicBtn) musicBtn.classList.remove('visible');
 
       if (coverPage && coverCenter) {
-        // Hide back button
-        if (backBtn) backBtn.classList.remove('visible');
-
         // Smooth scroll to top instantly
         window.scrollTo({ top: 0, behavior: 'smooth' });
 

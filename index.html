@@ -1214,6 +1214,51 @@
       font-weight: 600;
     }
 
+    /* WhatsApp Wish Button */
+    .whatsapp-wish-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 1rem;
+      padding: 0.75rem 1.6rem;
+      background: linear-gradient(135deg, #1b6d2f 0%, #25D366 50%, #128C7E 100%);
+      color: #FFFFFF !important;
+      text-decoration: none;
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      border-radius: 50px;
+      box-shadow:
+        0 4px 15px rgba(37, 211, 102, 0.35),
+        0 0 0 1px rgba(255, 255, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .whatsapp-wish-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow:
+        0 8px 25px rgba(37, 211, 102, 0.5),
+        0 0 0 2px var(--gold-bright),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      color: #FFFFFF !important;
+    }
+
+    .wa-icon {
+      font-size: 1.15rem;
+    }
+
+    .wa-arrow {
+      font-size: 0.9rem;
+      transition: transform 0.3s ease;
+    }
+
+    .whatsapp-wish-btn:hover .wa-arrow {
+      transform: translate(2px, -2px);
+    }
+
     /* Closing */
     .card-closing {
       text-align: center;
@@ -2148,8 +2193,17 @@
           <div class="rsvp-box">
             <div class="rsvp-title">♦ Kindly Confirm Your Presence ♦</div>
             <div class="rsvp-contact">
-              📞 Sunil Kumar: <a href="tel:+917981295967">+91 79812 95967</a><br />
+              📞 Sunil Kumar: <a href="tel:+917981295967">+91 79812 95967</a>
             </div>
+
+            <a href="https://wa.me/917981295967?text=Heartiest%20Congratulations%20Sunil%20%26%20Gaitri!%20Wishing%20you%20a%20lifetime%20of%20love,%20happiness,%20and%20a%20blessed%20wedding!%20💐✨"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="whatsapp-wish-btn">
+              <span class="wa-icon">💬</span>
+              <span>Send Blessings on WhatsApp</span>
+              <span class="wa-arrow">↗</span>
+            </a>
           </div>
 
           <!-- Closing -->

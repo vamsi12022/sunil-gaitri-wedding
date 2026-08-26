@@ -1132,30 +1132,175 @@
       transition-delay: 0.4s;
     }
 
-    /* Responsive */
-    @media (max-width: 700px) {
+    /* ══════════════════════════════════════
+       MOBILE & TABLET RESPONSIVE STYLES
+    ══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 100dvh;
+        padding: 4rem 1rem 3rem;
+      }
+
+      .hero-content {
+        padding: 1rem 0.5rem;
+      }
+
+      .events-bg {
+        padding: 3.5rem 0.8rem;
+      }
+
+      .events-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        max-width: 500px;
+      }
+
+      .card-section {
+        padding: 3rem 0.8rem 4rem;
+      }
+
       .invitation-card {
-        padding: 2.5rem 1.4rem;
+        margin: 0 auto;
+        box-shadow:
+          0 0 0 2px #8B0000,
+          0 0 0 4px rgba(212,160,23,0.6),
+          0 0 0 6px #8B0000,
+          0 0 35px rgba(212,160,23,0.25),
+          0 20px 50px rgba(0,0,0,0.6);
+      }
+
+      .card-top-banner {
+        padding: 1.2rem 1rem 1rem;
+      }
+
+      .card-body {
+        padding: 1.8rem 1.2rem;
+      }
+
+      .card-body::before {
+        inset: 10px;
+      }
+
+      .card-body::after {
+        inset: 14px;
       }
 
       .main-detail-box {
         grid-template-columns: 1fr;
-        gap: 1.2rem;
+        gap: 1.4rem;
+        padding: 1.2rem 0.8rem;
       }
 
       .mdb-sep {
         display: none;
       }
 
-      .events-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 500px) {
       .dates-ribbon {
         flex-direction: column;
         align-items: center;
+        gap: 0.7rem;
+      }
+
+      .date-pill {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .corner {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #cover-center {
+        width: 95vw;
+        padding: 1.2rem 0.8rem;
+      }
+
+      .cover-om {
+        font-size: 2.6rem;
+      }
+
+      .cover-telugu {
+        font-size: 0.88rem;
+        line-height: 1.8;
+      }
+
+      .cover-groom,
+      .cover-bride {
+        font-size: 2rem;
+      }
+
+      .cover-amp {
+        font-size: 1.8rem;
+        margin: 0.1rem 0;
+      }
+
+      .cover-date-row {
+        gap: 0.4rem;
+        margin: 0.8rem 0 1.4rem;
+      }
+
+      .cover-date-pill {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.65rem;
+      }
+
+      #btn-open {
+        font-size: 0.82rem;
+        padding: 0.75rem 1.6rem;
+        letter-spacing: 0.08em;
+      }
+
+      .om-symbol {
+        font-size: 3rem;
+      }
+
+      .shloka {
+        font-size: 0.92rem;
+        line-height: 1.9;
+      }
+
+      .hero-groom,
+      .hero-bride {
+        font-size: clamp(2rem, 9vw, 3rem);
+      }
+
+      .hero-ampersand {
+        font-size: 2.2rem;
+      }
+
+      .banner-om {
+        font-size: 2.2rem;
+      }
+
+      .banner-title {
+        font-size: 0.88rem;
+        line-height: 1.7;
+      }
+
+      .card-groom-n,
+      .card-bride-n {
+        font-size: 1.6rem;
+      }
+
+      .card-ampersand {
+        font-size: 1.9rem;
+      }
+
+      .family-block .fname {
+        font-size: 0.98rem;
+      }
+
+      .rsvp-box {
+        padding: 1.1rem 0.8rem;
+      }
+
+      #music-btn {
+        bottom: 1rem;
+        right: 1rem;
+        padding: 0.45rem 0.9rem;
+        font-size: 0.8rem;
       }
     }
 

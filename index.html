@@ -1637,10 +1637,11 @@
     <span class="btn-hint">🎵 Telugu wedding music will play</span>
   </div>
 
-  <!-- Native HTML5 Wedding Audio Player -->
-  <audio id="weddingAudio" loop preload="auto">
-    <source src="wedding_music.webm" type="audio/webm">
+  <!-- Native HTML5 Wedding Audio Player (Instant Mobile-Optimized) -->
+  <audio id="weddingAudio" loop preload="auto" playsinline>
+    <source src="wedding_music.mp3" type="audio/mpeg">
     <source src="wedding_music.m4a" type="audio/mp4">
+    <source src="wedding_music.webm" type="audio/webm">
   </audio>
 
   <!-- Music toggle button (visible after opening) -->
@@ -1991,19 +1992,23 @@
     let musicOn = false;
 
     function openInvitation() {
-      // 1. Play wedding audio immediately inside user click handler
+      // 1. Play wedding audio immediately inside user click handler (zero mobile latency)
       const audio = document.getElementById('weddingAudio');
       if (audio) {
-        audio.play().then(() => {
-          musicOn = true;
-          const btn = document.getElementById('music-btn');
-          if (btn) btn.classList.add('visible');
-        }).catch(err => {
-          console.warn('Audio play request:', err);
-          // Fallback: still show button so user can toggle on if needed
-          const btn = document.getElementById('music-btn');
-          if (btn) btn.classList.add('visible');
-        });
+        audio.currentTime = 0;
+        audio.volume = 1.0;
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            musicOn = true;
+            const btn = document.getElementById('music-btn');
+            if (btn) btn.classList.add('visible');
+          }).catch(err => {
+            console.warn('Audio play request:', err);
+            const btn = document.getElementById('music-btn');
+            if (btn) btn.classList.add('visible');
+          });
+        }
       }
 
       // 2. Hide center card
